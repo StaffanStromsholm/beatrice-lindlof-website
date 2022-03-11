@@ -1,12 +1,37 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from "react";
+import styled from "styled-components";
 import { app } from "../firebase-config";
-import { E_Font, Font } from './Font';
+import { E_Font, Font } from "./Font";
+import profileImg from "../images/profileImg.jpeg";
+
+const AboutMeWrapper = styled.div`
+    background-image: url(${profileImg});
+    background-color: #cccccc;
+    height: fit-content;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 500px;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    margin: 0 auto;
+    border-radius: 8px;
+    `;   
+
+const TextWrapper = styled.div`
+    background-color: white;
+    opacity: 0.7;
+    border-radius: 8px;
+    padding: 10px;
+`
 
 const db = app.database();
 
 type T_AboutMe = {
     text: string;
-}
+};
 
 export default function AboutMe() {
     const [aboutMe, setAboutMe] = useState<T_AboutMe | null>(null);
@@ -27,13 +52,17 @@ export default function AboutMe() {
 
             setAboutMe(aboutMeArray[aboutMeArray.length - 1]);
         });
-    }, [])
+    }, []);
 
     return (
-        <div>
-            <Font weight={"light"} size={E_Font.FONT_SIZE_TITLE}>Om mig</Font>
-
-            <Font weight={"light"}>{aboutMe && aboutMe.text}</Font>
-        </div>
-    )
+        <AboutMeWrapper>
+            <TextWrapper>
+                <Font weight={"light"} size={E_Font.FONT_SIZE_TITLE}>
+                    Om mig
+                </Font>
+                <br></br>
+                <Font weight={"light"}>{aboutMe && aboutMe.text}</Font>
+            </TextWrapper>
+        </AboutMeWrapper>
+    );
 }

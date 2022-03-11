@@ -5,20 +5,19 @@ import { E_Font } from "./Font";
 import { keyframes } from "styled-components";
 
 const swipe = keyframes`
- 0% { left: -1000px; }
- 100% { left: 1500px; }
+    0% { left: -1000px; }
+    100% { left: 1500px; }
 `;
 
 const fadein = keyframes`
- 0% { opacity: 0; }
- 70% { opacity: 0; }
- 100% { opacity: 1; }
+    0% { opacity: 0; }
+    70% { opacity: 0; }
+    100% { opacity: 1; }
 `;
 
 const HeroBannerWrapper = styled.div`
     width: 100%;
     height: 500px;
-    background-color: #a3c4cc;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -46,13 +45,13 @@ const NickName = styled.div`
 const PaintRoller = styled.img`
     width: 30px;
     filter: invert(100%) sepia(0%) saturate(1352%) hue-rotate(87deg)
-        brightness(119%) contrast(119%);
+    brightness(119%) contrast(119%);
 `;
 
 const PaintRollerSwipe = styled.img`
     width: 400px;
     filter: invert(100%) sepia(0%) saturate(1352%) hue-rotate(87deg)
-        brightness(119%) contrast(119%);
+    brightness(119%) contrast(119%);
     transform: rotate(-90deg);
     position: absolute;
     left: -1000px;
@@ -61,16 +60,16 @@ const PaintRollerSwipe = styled.img`
 `;
 
 const Name = styled.div`
-font-family: ${E_Font.FONT_FAMILY}
-letter-spacing: 5px;
-font-size: 1.8rem;
-color: white;
+    font-family: ${E_Font.FONT_FAMILY}
+    letter-spacing: 5px;
+    font-size: 1.8rem;
+    color: white;
 `;
 
 const CatchPhrase = styled.div`
-color: #776622;
-font-family: ${E_Font.FONT_FAMILY}
-animation-name: ${fadein};
+    color: #776622;
+    font-family: ${E_Font.FONT_FAMILY}
+    animation-name: ${fadein};
     animation-duration: 1.5s;`;
 
 export default function HeroBanner() {
