@@ -8,7 +8,7 @@ type ButtonProps = {
     onClick: () => void;
 };
 
-export const Button = styled.div<ButtonProps>`
+export const Button = styled.button<ButtonProps>`
     text-decoration: none;
     width: 300px;
     height: 50px;
@@ -17,6 +17,7 @@ export const Button = styled.div<ButtonProps>`
     justify-content: center;
     align-items: center;
     text-transform: uppercase;
+    border: 1px solid black;
     border-radius: 5px;
     background-color: rgb(240, 240, 240);
     font-weight: bold;

@@ -12,17 +12,18 @@ const AboutMeWrapper = styled.div`
     background-repeat: no-repeat;
     background-size: cover;
     height: 500px;
-    width: 300px;
+    width: 320px;
     display: flex;
     flex-direction: column;
     justify-content: end;
     margin: 0 auto;
     border-radius: 8px;
+    line-height: 1.3;
     `;   
 
 const TextWrapper = styled.div`
     background-color: white;
-    opacity: 0.7;
+    opacity: 1;
     border-radius: 8px;
     padding: 10px;
 `

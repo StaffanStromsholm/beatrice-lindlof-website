@@ -10,10 +10,8 @@ import { Button } from "../components/Button";
 const db = app.database();
 
 const EditGalleryWrapper = styled.div`
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    width: 100%;
+    width: fit-content;
+    margin: 50px auto 0 auto;
 `;
 
 const StyledTextarea = styled.textarea`
@@ -27,6 +25,7 @@ const EditGallery = () => {
     const [post, setPost] = useState({ text: "" });
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [fileUrl, setFileUrl] = useState<string | null>(null);
+    const [isUrlFetched, setIsUrlFetched] = useState<boolean>(true);
 
     const history = useHistory();
 
@@ -34,13 +33,6 @@ const EditGallery = () => {
         setPost({ text: e.target.value });
     };
 
-    // const handleAddPost = () => {
-    //     if (post.text.length === 0) return;
-    //     let ref = db.ref("aboutMe");
-    //     ref.push(post);
-
-    //     history.push(`/`);
-    // };
 
     const handleAddPost = () => {
         let postRef = app.database().ref("galleryImages");
@@ -49,12 +41,14 @@ const EditGallery = () => {
     };
 
     const handleFileChange = async (e: any) => {
+        setIsUrlFetched(false);
         const file = e.target.files[0];
         console.log(file);
         const storageRef = app.storage().ref();
         const fileRef = storageRef.child(new Date().toISOString() + file.name);
         await fileRef.put(file);
         setFileUrl(await fileRef.getDownloadURL());
+        setIsUrlFetched(true);
     };
 
     useEffect(() => {
@@ -77,12 +71,10 @@ const EditGallery = () => {
 
     return (
         <EditGalleryWrapper>
-            <Font>Lägg till gallerifoto</Font>
+            <Font size={E_Font.FONT_SIZE_TITLE}>Lägg till gallerifoto</Font>
+            <br></br>
 
             <form id="image">
-                <div>
-                    <label htmlFor="image">Foto *</label>
-                </div>
                 <input
                     id="image"
                     name="image"
@@ -91,7 +83,10 @@ const EditGallery = () => {
                     required
                     style={{ width: "100%" }}
                 />
-                <Button onClick={handleAddPost}>Spara</Button>
+            <Button disabled={!isUrlFetched} style={{backgroundColor: `${isUrlFetched ? "white" : "rgb(220, 220, 220)"}`}} onClick={handleAddPost}>{isUrlFetched ? "Spara" : "Laddar"}</Button>
+            {/* {!isUrlFetched && <Font size={E_Font.FONT_SIZE_TITLE}>Laddar</Font>} */}
+                
+                
             </form>
         </EditGalleryWrapper>
     );
