@@ -61,8 +61,7 @@ function PhotoModal(props: any) {
         z-index: 2;
         cursor: pointer;
         @media (max-width: 900px) {
-            height: calc(100vh - 109px);
-            top: 109px;
+            height: calc(100vh);
         }
     `;
 
