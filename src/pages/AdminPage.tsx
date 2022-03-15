@@ -1,15 +1,13 @@
 import React from "react";
 import { Link, useHistory } from "react-router-dom";
-import { app } from "../firebase-config";
+import { app, auth } from "../firebase-config";
 
 import styled from "styled-components";
 import { Button } from "../components/Button";
 
-
 const AdminPageWrapper = styled.div`
-    display: flex;
-    justify-content: center;
-    width: 100%;
+    width: fit-content;
+    margin: 50px auto 0 auto;
 `;
 
 const AdminPageContent = styled.div`
@@ -31,12 +29,16 @@ export default function AdminPage() {
         <>
             <AdminPageWrapper>
                 <AdminPageContent>
-                    <Button onClick={() => onClickHandler("/edit")}>
-                        <i className="far fa-file-image"></i> Redigera texter
+                    <Button onClick={() => onClickHandler("/editaboutme")}>
+                    <i style={{position: "absolute", left: "0"}} className="far fa-user"></i> Redigera Om mig
                     </Button>
                     <Button onClick={() => onClickHandler("/addphoto")}>
-                        <i className="far fa-file-image"></i> Ladda upp
+                        <i style={{position: "absolute", left: "0"}} className="far fa-file-image"></i> Ladda upp
                         gallerifoto
+                    </Button>
+                    <Button onClick={() => auth.signOut()}>
+                    <i style={{position: "absolute", left: "0"}} className="far fa-right-from-bracket"></i>
+                        Sign out
                     </Button>
                 </AdminPageContent>
             </AdminPageWrapper>

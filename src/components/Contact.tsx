@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components';
 import { app } from "../firebase-config";
+import { E_Padding } from '../LayoutEnums';
 import { E_Font, Font } from './Font';
 
 const ContactWrapper = styled.div`
     background-color: white;
     border-radius: 8px;
-    padding: 10px;
-    width: 300px;
+    padding: ${E_Padding.CONTENT_WRAPPER};
+    width: 280px;
     margin: 30px auto 0 auto;
 `
 

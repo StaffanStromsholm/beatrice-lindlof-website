@@ -15,10 +15,10 @@ function App() {
                     <PrivateRoute path="/admin">
                         <AdminPage />
                     </PrivateRoute>
-                    <PrivateRoute path="/edit">
+                    <PrivateRoute path="/editaboutme">
                         <EditAboutMe />
                     </PrivateRoute>
-                    <PrivateRoute path="/editgallery">
+                    <PrivateRoute path="/addphoto">
                         <EditGallery />
                     </PrivateRoute>
                     <Route path="/login">

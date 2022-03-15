@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { app } from "../firebase-config";
 import { E_Font, Font } from "./Font";
 import profileImg from "../images/profileImg.jpeg";
+import { E_Padding } from "../LayoutEnums";
 
 const AboutMeWrapper = styled.div`
     background-image: url(${profileImg});
@@ -19,13 +20,14 @@ const AboutMeWrapper = styled.div`
     margin: 0 auto;
     border-radius: 8px;
     line-height: 1.3;
+    
     `;   
 
 const TextWrapper = styled.div`
     background-color: white;
     opacity: 1;
     border-radius: 8px;
-    padding: 10px;
+    padding: ${E_Padding.CONTENT_WRAPPER}
 `
 
 const db = app.database();

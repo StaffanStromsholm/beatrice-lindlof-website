@@ -23,7 +23,7 @@ const StyledTextarea = styled.textarea`
 
 const EditGallery = () => {
     const [post, setPost] = useState({ text: "" });
-    const [isLoading, setIsLoading] = useState<boolean>(true);
+    // const [isLoading, setIsLoading] = useState<boolean>(true);
     const [fileUrl, setFileUrl] = useState<string | null>(null);
     const [isUrlFetched, setIsUrlFetched] = useState<boolean>(true);
 
@@ -43,7 +43,6 @@ const EditGallery = () => {
     const handleFileChange = async (e: any) => {
         setIsUrlFetched(false);
         const file = e.target.files[0];
-        console.log(file);
         const storageRef = app.storage().ref();
         const fileRef = storageRef.child(new Date().toISOString() + file.name);
         await fileRef.put(file);

@@ -23,4 +23,5 @@ export const Button = styled.button<ButtonProps>`
     font-weight: bold;
     cursor: pointer;
     color: rgb(30, 30, 30);
+    position: relative;
 `;

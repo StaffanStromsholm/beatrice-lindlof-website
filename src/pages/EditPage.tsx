@@ -10,10 +10,8 @@ import { Button } from "../components/Button";
 const db = app.database();
 
 const EditPageWrapper = styled.div`
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    width: 100%;
+    width: fit-content;
+    margin: 50px auto 0 auto;
 `;
 
 const StyledTextarea = styled.textarea`
@@ -21,6 +19,7 @@ const StyledTextarea = styled.textarea`
     border-radius: 5px;
     width: 300px;
     height: 30px;
+    rows: 5;
 `;
 
 const EditAboutMe = () => {
@@ -61,8 +60,14 @@ const EditAboutMe = () => {
 
     return (
         <EditPageWrapper>
-            <Font>Om mig</Font>
-            <StyledTextarea onChange={handleChange} value={post.text} />
+            <Font size={E_Font.FONT_SIZE_TITLE}>Om mig</Font>
+            <br></br>
+            <StyledTextarea
+                rows={5}
+                cols={5}
+                onChange={handleChange}
+                value={post.text}
+            />
             <Button onClick={handleAddPost}>Spara</Button>
         </EditPageWrapper>
     );
