@@ -5,30 +5,19 @@ import { E_Font, Font } from "./Font";
 import profileImg from "../images/profileImg.jpeg";
 import { E_Padding } from "../LayoutEnums";
 
-const AboutMeWrapper = styled.div`
-    background-image: url(${profileImg});
-    background-color: #cccccc;
-    height: fit-content;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 500px;
-    width: 320px;
-    display: flex;
-    flex-direction: column;
-    justify-content: end;
-    margin: 0 auto;
-    border-radius: 8px;
-    line-height: 1.3;
-    
-    `;   
-
 const TextWrapper = styled.div`
     background-color: white;
     opacity: 1;
     border-radius: 8px;
-    padding: ${E_Padding.CONTENT_WRAPPER}
-`
+    padding: ${E_Padding.CONTENT_WRAPPER};
+    width: 600px;
+    margin: 30px auto 0 auto;
+    white-space: pre-wrap;
+    line-height: 1.5;
+    @media (max-width: 768px) {
+        width: 280px;
+    }
+`;
 
 const db = app.database();
 
@@ -58,7 +47,6 @@ export default function AboutMe() {
     }, []);
 
     return (
-        <AboutMeWrapper>
             <TextWrapper>
                 <Font weight={"light"} size={E_Font.FONT_SIZE_TITLE}>
                     Om mig
@@ -66,6 +54,5 @@ export default function AboutMe() {
                 <br></br>
                 <Font weight={"light"}>{aboutMe && aboutMe.text}</Font>
             </TextWrapper>
-        </AboutMeWrapper>
     );
 }

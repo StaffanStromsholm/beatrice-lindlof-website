@@ -3,6 +3,7 @@ import styled from "styled-components";
 import paintRollerSvg from "../images/roller-paint-roller-svgrepo-com.svg";
 import { E_Font } from "./Font";
 import { keyframes } from "styled-components";
+import profileImg from "../images/profileImg.jpeg";
 
 const swipe = keyframes`
     0% { left: -1000px; }
@@ -17,11 +18,14 @@ const fadein = keyframes`
 
 const HeroBannerWrapper = styled.div`
     width: 100%;
-    height: 500px;
+    height: 600px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    @media (max-width: 768px) {
+        // height: 900px;
+      }
 `;
 
 const LogoWrapper = styled.div`
@@ -32,7 +36,7 @@ const LogoWrapper = styled.div`
     align-items: center;
     flex-direction: column;
     animation-name: ${fadein};
-    animation-duration: 1.5s;
+    animation-duration: 3s;
 `;
 
 const NickName = styled.div`
@@ -56,7 +60,7 @@ const PaintRollerSwipe = styled.img`
     position: absolute;
     left: -1000px;
     animation-name: ${swipe};
-    animation-duration: 2s;
+    animation-duration: 4s;
 `;
 
 const Name = styled.div`
@@ -66,11 +70,65 @@ const Name = styled.div`
     color: white;
 `;
 
+const CatchPhrasePhotoWrapper = styled.div`
+    display: flex;
+    width: 600px;
+    align-items: center;
+    @media (max-width: 768px) {
+        flex-direction: column;
+      }
+`
+
 const CatchPhrase = styled.div`
     color: #776622;
     font-family: ${E_Font.FONT_FAMILY}
     animation-name: ${fadein};
-    animation-duration: 1.5s;`;
+    animation-duration: 3s;
+    width: 600px;
+    text-align: center;
+    @media (max-width: 768px) {
+        width: 330px;
+        margin-bottom: 30px;
+      }
+`;
+
+const ProfilePictureWrapper = styled.div`
+    width: fit-content;
+    margin: 0 auto;
+    display: flex;
+    justify-content: flex-end;
+    animation-name: ${fadein};
+    animation-duration: 3s;
+
+    @media (max-width: 768px) {
+        width: 320px;
+        height: 320px;
+        border-radius: 8px;
+    }
+`;
+
+const ProfilePicture = styled.div`
+    background-image: url(${profileImg});
+    background-color: #cccccc;
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    height: 300px;
+    width: 300px;
+    border-radius: 50%;
+    border: 7px solid #776622;
+    border: 5px solid white;
+
+    // @media (max-width: 768px) {
+    //     width: 320px;
+    //     height: 640px;
+    //     border-radius: 8px;
+    //     margin: 0 auto;
+    //     position: relative;
+    // }
+`;
+    
 
 export default function HeroBanner() {
     return (
@@ -83,8 +141,13 @@ export default function HeroBanner() {
                 </NickName>
                 <Name>Beatrice Lindlöf</Name>
             </LogoWrapper>
-            <CatchPhrase>En bra mening om vad jag håller på med</CatchPhrase>
+            <CatchPhrasePhotoWrapper>
+            <CatchPhrase>Jag målar inomhus och utomhus i Borgåtrakten med omnejd, också i skärgården.</CatchPhrase>
             <PaintRollerSwipe src={paintRollerSvg} />
+            <ProfilePictureWrapper>
+                <ProfilePicture />
+            </ProfilePictureWrapper>
+            </CatchPhrasePhotoWrapper>
         </HeroBannerWrapper>
     );
 }

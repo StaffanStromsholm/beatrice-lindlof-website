@@ -5,11 +5,14 @@ import { app } from "../firebase-config";
 import { E_Font, Font } from "./Font";
 
 const GalleryWrapper = styled.div`
-    width: 300px;
+    width: 600px;
     margin: 30px auto 0 auto;
     background-color: white;
-    padding: 10px;
+    padding: 20px;
     border-radius: 8px;
+    @media (max-width: 768px) {
+        width: 280px
+      }
 `;
 
 const GalleryContent = styled.div`
@@ -19,11 +22,14 @@ const GalleryContent = styled.div`
 
 const GalleryPhotoWrapper = styled.div`
     position: relative;
-    margin-bottom: 30px;
+    margin-top: 30px;
 `;
 
 const GalleryPhoto = styled.img`
-    width: 147px;
+width: 297px;
+@media (max-width: 768px) {
+    width: 137px;
+  }
 `;
 
 const GalleryPhotoDesc = styled.div`
@@ -145,6 +151,7 @@ export default function Gallery() {
             <Font weight={"light"} size={E_Font.FONT_SIZE_TITLE}>
                 Galleri
             </Font>
+            <br />
             <Font weight={"light"} size={E_Font.FONT_SIZE_BASIC}>
                 Klicka på bilden för att förstora
             </Font>

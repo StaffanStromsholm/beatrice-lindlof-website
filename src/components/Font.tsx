@@ -11,7 +11,7 @@ type FontProps = {
 }
 
 export enum E_Font {
-    FONT_SIZE_BASIC = "14px",
+    FONT_SIZE_BASIC = "16px",
     FONT_SIZE_BIGGER = "18px",
     FONT_SIZE_TITLE = "24px",
     FONT_WEIGHT_LIGHT = "light",
