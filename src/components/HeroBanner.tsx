@@ -76,6 +76,8 @@ const CatchPhrasePhotoWrapper = styled.div`
     align-items: center;
     @media (max-width: 768px) {
         flex-direction: column;
+        width: 320px;
+
       }
 `
 
