@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { app } from "../firebase-config";
 import { E_Font, Font } from "./Font";
-import profileImg from "../images/profileImg.jpeg";
 import { E_Padding } from "../LayoutEnums";
 
 const TextWrapper = styled.div`
@@ -47,7 +46,7 @@ export default function AboutMe() {
     }, []);
 
     return (
-            <TextWrapper>
+            <TextWrapper id="about">
                 <Font weight={"light"} size={E_Font.FONT_SIZE_TITLE}>
                     Om mig
                 </Font>

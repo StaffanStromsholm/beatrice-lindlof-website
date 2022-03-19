@@ -18,7 +18,8 @@ const StyledTextarea = styled.textarea`
     border: 1px solid gray;
     border-radius: 5px;
     width: 300px;
-    height: 30px;
+    font-family: 'Raleway';
+    line-height: 1.3;
     rows: 5;
 `;
 
@@ -63,8 +64,7 @@ const EditAboutMe = () => {
             <Font size={E_Font.FONT_SIZE_TITLE}>Om mig</Font>
             <br></br>
             <StyledTextarea
-                rows={5}
-                cols={5}
+                rows={25}
                 onChange={handleChange}
                 value={post.text}
             />

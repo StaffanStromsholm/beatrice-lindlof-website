@@ -23,6 +23,7 @@ const HeroBannerWrapper = styled.div`
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    padding-top: 70px;
     @media (max-width: 768px) {
         // height: 900px;
       }
@@ -43,6 +44,7 @@ const NickName = styled.div`
     font-family: "Sacramento", cursive;
     font-size: 3rem;
     color: white;
+    margin-bottom: -20px;
     margin-left: -10px;
 `;
 
@@ -68,6 +70,8 @@ const Name = styled.div`
     letter-spacing: 5px;
     font-size: 1.8rem;
     color: white;
+    border-top: 1px solid white;
+
 `;
 
 const CatchPhrasePhotoWrapper = styled.div`
@@ -120,7 +124,7 @@ const ProfilePicture = styled.div`
     width: 300px;
     border-radius: 50%;
     border: 7px solid #776622;
-    border: 5px solid white;
+    border: 1px solid white;
 
     // @media (max-width: 768px) {
     //     width: 320px;
@@ -134,7 +138,7 @@ const ProfilePicture = styled.div`
 
 export default function HeroBanner() {
     return (
-        <HeroBannerWrapper>
+        <HeroBannerWrapper id="home">
             <LogoWrapper>
                 <NickName>
                     Målar

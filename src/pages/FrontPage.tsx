@@ -10,6 +10,7 @@ import Footer from '../components/Footer';
 export default function FrontPage() {
     return (
         <>
+            <Header />
             <HeroBanner />
             <AboutMe />
             <Contact />

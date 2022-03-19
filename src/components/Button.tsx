@@ -17,7 +17,7 @@ export const Button = styled.button<ButtonProps>`
     justify-content: center;
     align-items: center;
     text-transform: uppercase;
-    border: 1px solid black;
+    border: none;
     border-radius: 5px;
     background-color: rgb(240, 240, 240);
     font-weight: bold;

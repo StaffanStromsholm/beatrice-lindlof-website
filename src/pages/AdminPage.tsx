@@ -30,10 +30,10 @@ export default function AdminPage() {
             <AdminPageWrapper>
                 <AdminPageContent>
                     <Button onClick={() => onClickHandler("/editaboutme")}>
-                    <i style={{position: "absolute", left: "0"}} className="far fa-user"></i> Redigera Om mig
+                    Redigera Om mig
                     </Button>
                     <Button onClick={() => onClickHandler("/addphoto")}>
-                        <i style={{position: "absolute", left: "0"}} className="far fa-file-image"></i> Ladda upp
+                        Ladda upp
                         gallerifoto
                     </Button>
                     <Button onClick={() => auth.signOut()}>

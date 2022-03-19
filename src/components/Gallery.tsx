@@ -147,7 +147,7 @@ export default function Gallery() {
     }, []);
 
     return (
-        <GalleryWrapper>
+        <GalleryWrapper id="gallery">
             <Font weight={"light"} size={E_Font.FONT_SIZE_TITLE}>
                 Galleri
             </Font>
