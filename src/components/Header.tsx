@@ -36,8 +36,8 @@ const HeaderItem = styled.li`
     }
 
     @media (max-width: 768px) {
-        padding: 0 8px;
-        margin: 0 8px;
+        padding: 0 7px;
+        margin: 0 7px;
         font-size: 1rem;
       }
     

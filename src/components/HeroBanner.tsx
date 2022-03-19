@@ -5,10 +5,10 @@ import { E_Font } from "./Font";
 import { keyframes } from "styled-components";
 import profileImg from "../images/profileImg.jpeg";
 
-const swipe = keyframes`
-    0% { left: -1000px; }
-    100% { left: 1500px; }
-`;
+// const swipe = keyframes`
+//     0% { left: -1000px; }
+//     100% { left: 1500px; }
+// `;
 
 const fadein = keyframes`
     0% { opacity: 0; }
@@ -37,7 +37,7 @@ const LogoWrapper = styled.div`
     align-items: center;
     flex-direction: column;
     animation-name: ${fadein};
-    animation-duration: 3s;
+    animation-duration: 1s;
 `;
 
 const NickName = styled.div`
@@ -54,16 +54,16 @@ const PaintRoller = styled.img`
     brightness(119%) contrast(119%);
 `;
 
-const PaintRollerSwipe = styled.img`
-    width: 400px;
-    filter: invert(100%) sepia(0%) saturate(1352%) hue-rotate(87deg)
-    brightness(119%) contrast(119%);
-    transform: rotate(-90deg);
-    position: absolute;
-    left: -1000px;
-    animation-name: ${swipe};
-    animation-duration: 4s;
-`;
+// const PaintRollerSwipe = styled.img`
+//     width: 400px;
+//     filter: invert(100%) sepia(0%) saturate(1352%) hue-rotate(87deg)
+//     brightness(119%) contrast(119%);
+//     transform: rotate(-90deg);
+//     position: absolute;
+//     left: -1000px;
+//     animation-name: ${swipe};
+//     animation-duration: 4s;
+// `;
 
 const Name = styled.div`
     font-family: ${E_Font.FONT_FAMILY}
@@ -89,7 +89,7 @@ const CatchPhrase = styled.div`
     color: #776622;
     font-family: ${E_Font.FONT_FAMILY}
     animation-name: ${fadein};
-    animation-duration: 3s;
+    animation-duration: 1s;
     width: 600px;
     text-align: center;
     @media (max-width: 768px) {
@@ -104,7 +104,7 @@ const ProfilePictureWrapper = styled.div`
     display: flex;
     justify-content: flex-end;
     animation-name: ${fadein};
-    animation-duration: 3s;
+    animation-duration: 1s;
 
     @media (max-width: 768px) {
         width: 320px;
@@ -149,7 +149,7 @@ export default function HeroBanner() {
             </LogoWrapper>
             <CatchPhrasePhotoWrapper>
             <CatchPhrase>Jag målar inomhus och utomhus i Borgåtrakten med omnejd, också i skärgården.</CatchPhrase>
-            <PaintRollerSwipe src={paintRollerSvg} />
+            {/* <PaintRollerSwipe src={paintRollerSvg} /> */}
             <ProfilePictureWrapper>
                 <ProfilePicture />
             </ProfilePictureWrapper>
