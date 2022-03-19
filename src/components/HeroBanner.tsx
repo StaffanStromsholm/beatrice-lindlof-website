@@ -18,7 +18,7 @@ const fadein = keyframes`
 
 const HeroBannerWrapper = styled.div`
     width: 100%;
-    height: 600px;
+    height: 650px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -80,7 +80,7 @@ const CatchPhrasePhotoWrapper = styled.div`
     align-items: center;
     @media (max-width: 768px) {
         flex-direction: column;
-        width: 320px;
+        width: 300px;
 
       }
 `
@@ -94,7 +94,7 @@ const CatchPhrase = styled.div`
     text-align: center;
     @media (max-width: 768px) {
         width: 330px;
-        margin-bottom: 30px;
+        margin-bottom: 50px;
       }
 `;
 
@@ -102,7 +102,7 @@ const ProfilePictureWrapper = styled.div`
     width: fit-content;
     margin: 0 auto;
     display: flex;
-    justify-content: flex-end;
+    // justify-content: flex-end;
     animation-name: ${fadein};
     animation-duration: 1s;
 
