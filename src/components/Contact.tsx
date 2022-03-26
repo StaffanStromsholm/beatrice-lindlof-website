@@ -1,11 +1,12 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import { app } from "../firebase-config";
 import { E_Padding } from "../LayoutEnums";
 import { E_Font, Font } from "./Font";
 import { faPhone } from "@fortawesome/free-solid-svg-icons";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import { Context } from "../Context";
 
 const ContactWrapper = styled.div`
     background-color: white;
@@ -19,10 +20,13 @@ const ContactWrapper = styled.div`
 `;
 
 export default function Contact() {
+    const context = useContext(Context);
+
     return (
         <ContactWrapper id="contact">
             <Font weight={"light"} size={E_Font.FONT_SIZE_TITLE}>
-                Kontakt
+                {context?.language === "sv" && "Kontakt"}
+                {context?.language === "fi" && "Yhteystiedot"}
             </Font>
             <br></br>
             <Font weight={"light"}>

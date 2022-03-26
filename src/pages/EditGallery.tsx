@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { useParams, useHistory, Redirect } from "react-router-dom";
 
 import { app } from "../firebase-config";
-import { AuthContext } from "../AuthContext";
+import { Context } from "../Context";
 import styled from "styled-components";
 import { E_Font, Font } from "../components/Font";
 import { Button } from "../components/Button";

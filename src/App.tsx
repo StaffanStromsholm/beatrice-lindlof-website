@@ -3,13 +3,13 @@ import AdminPage from "./pages/AdminPage";
 import FrontPage from "./pages/FrontPage";
 import Login from "./pages/Login";
 import PrivateRoute from "./components/PrivateRoute";
-import { AuthProvider } from "./AuthContext";
+import { Provider } from "./Context";
 import EditAboutMe from "./pages/EditPage";
 import EditGallery from "./pages/EditGallery";
 
 function App() {
     return (
-        <AuthProvider>
+        <Provider>
             <Router>
                 <Switch>
                     <PrivateRoute path="/admin">
@@ -29,7 +29,7 @@ function App() {
                     </Route>
                 </Switch>
             </Router>
-        </AuthProvider>
+        </Provider>
     );
 }
 

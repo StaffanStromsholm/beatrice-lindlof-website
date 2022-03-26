@@ -1,9 +1,17 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import paintRollerSvg from "../images/roller-paint-roller-svgrepo-com.svg";
 import { E_Font } from "./Font";
 import { keyframes } from "styled-components";
 import profileImg from "../images/profileImg.jpeg";
+import { app } from "../firebase-config";
+import { Context, T_Language } from "../Context";
+
+const db = app.database();
+
+type T_LanguageSelectionProps = {
+    onClick?: (e?: any) => Promise<void> | void;
+};
 
 // const swipe = keyframes`
 //     0% { left: -1000px; }
@@ -26,7 +34,7 @@ const HeroBannerWrapper = styled.div`
     padding-top: 70px;
     @media (max-width: 768px) {
         // height: 900px;
-      }
+    }
 `;
 
 const LogoWrapper = styled.div`
@@ -51,7 +59,7 @@ const NickName = styled.div`
 const PaintRoller = styled.img`
     width: 30px;
     filter: invert(100%) sepia(0%) saturate(1352%) hue-rotate(87deg)
-    brightness(119%) contrast(119%);
+        brightness(119%) contrast(119%);
 `;
 
 // const PaintRollerSwipe = styled.img`
@@ -81,9 +89,8 @@ const CatchPhrasePhotoWrapper = styled.div`
     @media (max-width: 768px) {
         flex-direction: column;
         width: 300px;
-
-      }
-`
+    }
+`;
 
 const CatchPhrase = styled.div`
     color: #776622;
@@ -134,11 +141,72 @@ const ProfilePicture = styled.div`
     //     position: relative;
     // }
 `;
-    
+
+const LanguageWrapper = styled.div`
+    position: absolute;
+    right: 30px;
+    top: 100px;
+`;
+
+const LanguageSelection = styled.span<T_LanguageSelectionProps>`
+    cursor: pointer;
+`;
 
 export default function HeroBanner() {
+    const [catchPhraseSv, setCatchPhraseSv] = useState<any>(null);
+    const [catchPhraseFi, setCatchPhraseFi] = useState<any>(null);
+    const context = useContext(Context);
+
+    const languageHandler = (language: T_Language) => {
+        context?.setLanguageHandler(language);
+    };
+
+    useEffect(() => {
+        console.log(context?.language);
+    }, [context?.language])
+
+    useEffect(() => {
+        var postArray;
+        const postRef = db.ref("catchPhraseSv");
+
+        postRef.on("value", (snapshot) => {
+            const posts = snapshot.val();
+            const postList = [];
+
+            for (let id in posts) {
+                postList.push({ id, ...posts[id] });
+            }
+
+            postArray = postList;
+
+            setCatchPhraseSv(postArray[postArray.length - 1]);
+        });
+    }, []);
+
+    useEffect(() => {
+        var postArray;
+        const postRef = db.ref("catchPhraseFi");
+
+        postRef.on("value", (snapshot) => {
+            const posts = snapshot.val();
+            const postList = [];
+
+            for (let id in posts) {
+                postList.push({ id, ...posts[id] });
+            }
+
+            postArray = postList;
+
+            setCatchPhraseFi(postArray[postArray.length - 1]);
+        });
+    }, []);
+
     return (
         <HeroBannerWrapper id="home">
+            <LanguageWrapper>
+                <LanguageSelection onClick={() => languageHandler("sv")}>Sv</LanguageSelection> | 
+                <LanguageSelection onClick={() => languageHandler("fi")}> Fi</LanguageSelection>
+            </LanguageWrapper>
             <LogoWrapper>
                 <NickName>
                     Målar
@@ -148,11 +216,17 @@ export default function HeroBanner() {
                 <Name>Beatrice Lindlöf</Name>
             </LogoWrapper>
             <CatchPhrasePhotoWrapper>
-            <CatchPhrase>Jag målar inomhus och utomhus i Borgåtrakten med omnejd, också i skärgården.</CatchPhrase>
-            {/* <PaintRollerSwipe src={paintRollerSvg} /> */}
-            <ProfilePictureWrapper>
-                <ProfilePicture />
-            </ProfilePictureWrapper>
+                {context?.language === "sv" && <CatchPhrase>
+                    {catchPhraseSv && catchPhraseSv.text}
+                </CatchPhrase>}
+                {context?.language === "fi" && <CatchPhrase>
+                    {catchPhraseFi && catchPhraseFi.text}
+                </CatchPhrase>}
+                
+                {/* <PaintRollerSwipe src={paintRollerSvg} /> */}
+                <ProfilePictureWrapper>
+                    <ProfilePicture />
+                </ProfilePictureWrapper>
             </CatchPhrasePhotoWrapper>
         </HeroBannerWrapper>
     );

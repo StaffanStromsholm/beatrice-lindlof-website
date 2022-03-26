@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { useParams, useHistory, Redirect } from "react-router-dom";
 
 import { app } from "../firebase-config";
-import { AuthContext } from "../AuthContext";
+import { Context } from "../Context";
 import styled from "styled-components";
 import { E_Font, Font } from "../components/Font";
 import { Button } from "../components/Button";
@@ -11,7 +11,7 @@ const db = app.database();
 
 const EditPageWrapper = styled.div`
     width: fit-content;
-    margin: 50px auto 0 auto;
+    margin: 50px auto 30px auto;
 `;
 
 const StyledTextarea = styled.textarea`
@@ -24,26 +24,82 @@ const StyledTextarea = styled.textarea`
 `;
 
 const EditAboutMe = () => {
-    const [post, setPost] = useState({ text: "" });
-    const [isLoading, setIsLoading] = useState<boolean>(true);
+    const [postSv, setPostSv] = useState({ text: "" });
+    const [postFi, setPostFi] = useState({ text: "" });
+    const [catchPhraseSv, setCatchPhraseSv] = useState({ text: "" });
+    const [catchPhraseFi, setCatchPhraseFi] = useState({ text: "" });
 
     const history = useHistory();
 
-    const handleChange = (e: any) => {
-        setPost({ text: e.target.value });
+    const handleChangeSv = (e: any) => {
+        setPostSv({ text: e.target.value });
     };
 
-    const handleAddPost = () => {
-        if (post.text.length === 0) return;
-        let ref = db.ref("aboutMe");
-        ref.push(post);
+    const handleChangeFi = (e: any) => {
+        setPostFi({ text: e.target.value });
+    };
+
+    const handleChangeCatchPhraseSv = (e: any) => {
+        setCatchPhraseSv({text: e.target.value})
+    }
+
+    const handleChangeCatchPhraseFi = (e: any) => {
+        setCatchPhraseFi({text: e.target.value})
+    }
+
+    const handleAddPostSv = () => {
+        if (postSv.text.length === 0) return;
+        let ref = db.ref("aboutMeSv");
+        ref.push(postSv);
 
         history.push(`/`);
     };
 
+    const handleAddPostFi = () => {
+        if (postFi.text.length === 0) return;
+        let ref = db.ref("aboutMeFi");
+        ref.push(postFi);
+
+        history.push(`/`);
+    };
+
+    const handleAddCatchPhraseSv = () => {
+        if (catchPhraseSv.text.length === 0) return;
+        let ref = db.ref("catchPhraseSv");
+        ref.push(catchPhraseSv);
+
+        history.push(`/`);
+    }
+
+    const handleAddCatchPhraseFi = () => {
+        if (catchPhraseFi.text.length === 0) return;
+        let ref = db.ref("catchPhraseFi");
+        ref.push(catchPhraseFi);
+
+        history.push(`/`);
+    }
+
+    const getDbData = (dbRef: string) => {
+        var postArray;
+        const postRef = db.ref(dbRef);
+
+        return postRef.on("value", (snapshot) => {
+            const posts = snapshot.val();
+            const postList = [];
+
+            for (let id in posts) {
+                postList.push({ id, ...posts[id] });
+            }
+
+            postArray = postList;
+
+            return postArray[postArray.length - 1];
+        });
+    }
+
     useEffect(() => {
         var postArray;
-        const postRef = db.ref("aboutMe");
+        const postRef = db.ref("aboutMeSv");
 
         postRef.on("value", (snapshot) => {
             const posts = snapshot.val();
@@ -55,20 +111,107 @@ const EditAboutMe = () => {
 
             postArray = postList;
 
-            setPost(postArray[postArray.length - 1]);
+            setPostSv(postArray[postArray.length - 1]);
         });
     }, []);
 
+    useEffect(() => {
+        var postArray;
+        const postRef = db.ref("aboutMeFi");
+
+        postRef.on("value", (snapshot) => {
+            const posts = snapshot.val();
+            const postList = [];
+
+            for (let id in posts) {
+                postList.push({ id, ...posts[id] });
+            }
+
+            postArray = postList;
+
+            setPostFi(postArray[postArray.length - 1]);
+        });
+    }, []);
+
+    useEffect(() => {
+        var postArray;
+        const postRef = db.ref("catchPhraseSv");
+
+        postRef.on("value", (snapshot) => {
+            const posts = snapshot.val();
+            const postList = [];
+
+            for (let id in posts) {
+                postList.push({ id, ...posts[id] });
+            }
+
+            postArray = postList;
+
+            setCatchPhraseSv(postArray[postArray.length - 1]);
+        });
+    }, []);
+
+    useEffect(() => {
+        var postArray;
+        const postRef = db.ref("catchPhraseFi");
+
+        postRef.on("value", (snapshot) => {
+            const posts = snapshot.val();
+            const postList = [];
+
+            for (let id in posts) {
+                postList.push({ id, ...posts[id] });
+            }
+
+            postArray = postList;
+
+            setCatchPhraseFi(postArray[postArray.length - 1]);
+        });
+    }, []);
+    
     return (
         <EditPageWrapper>
-            <Font size={E_Font.FONT_SIZE_TITLE}>Om mig</Font>
+            <Font size={E_Font.FONT_SIZE_TITLE}>Om mig sv</Font>
             <br></br>
             <StyledTextarea
                 rows={25}
-                onChange={handleChange}
-                value={post.text}
+                onChange={handleChangeSv}
+                value={postSv.text}
             />
-            <Button onClick={handleAddPost}>Spara</Button>
+            <Button onClick={handleAddPostSv}>Spara</Button>
+            <br />
+            <br />
+
+            <Font size={E_Font.FONT_SIZE_TITLE}>Om mig fi</Font>
+            <br></br>
+            <StyledTextarea
+                rows={25}
+                onChange={handleChangeFi}
+                value={postFi.text}
+            />
+            <Button onClick={handleAddPostFi}>Spara</Button>
+            <br />
+            <br />
+
+            <Font size={E_Font.FONT_SIZE_TITLE}>Catch phrase sv</Font>
+            <br></br>
+            <StyledTextarea
+                rows={3}
+                onChange={handleChangeCatchPhraseSv}
+                value={catchPhraseSv.text ? catchPhraseSv.text : ""}
+            />
+            <Button onClick={handleAddCatchPhraseSv}>Spara</Button>
+
+            <br />
+            <br />
+            <Font size={E_Font.FONT_SIZE_TITLE}>Catch phrase fi</Font>
+            <br></br>
+            <StyledTextarea
+                rows={3}
+                onChange={handleChangeCatchPhraseFi}
+                value={catchPhraseFi.text ? catchPhraseFi.text : ""}
+            />
+            <Button onClick={handleAddCatchPhraseFi}>Spara</Button>
         </EditPageWrapper>
     );
 };

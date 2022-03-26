@@ -5,7 +5,7 @@ import { app } from "../firebase-config";
 import styled from "styled-components";
 
 type ButtonProps = {
-    onClick: () => void;
+    onClick?: (e?: any) => Promise<void> | void;
 };
 
 export const Button = styled.button<ButtonProps>`

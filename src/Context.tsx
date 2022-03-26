@@ -7,18 +7,27 @@ export type User = firebase.User
 
 interface AppContextInterface {
     currentUser: User | null;
+    setLanguageHandler: (language: T_Language) => void;
+    language: T_Language;
   }
 
 type AuthProverProps = {
     children: React.ReactNode
 }
 
-export const AuthContext = React.createContext<AppContextInterface | null>(null);
+export type T_Language = "sv" | "fi";
+
+export const Context = React.createContext<AppContextInterface | null>(null);
 
 
-export const AuthProvider = (props: AuthProverProps) => {
+export const Provider = (props: AuthProverProps) => {
   const [currentUser, setCurrentUser] = useState<User | null>(null);
-  const [pending, setPending] = useState(true);
+  const [language, setLanguage] = useState<T_Language>("sv");
+  const [pending, setPending] = useState<boolean>(true);
+
+  const setLanguageHandler = (language: T_Language) => {
+    setLanguage(language);
+  }
 
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
@@ -32,12 +41,14 @@ export const AuthProvider = (props: AuthProverProps) => {
   }
 
   return (
-    <AuthContext.Provider
+    <Context.Provider
       value={{
-        currentUser
+        currentUser,
+        setLanguageHandler,
+        language
       }}
     >
       {props.children}
-    </AuthContext.Provider>
+    </Context.Provider>
   );
 };

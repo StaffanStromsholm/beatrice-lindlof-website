@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
-import { AuthContext } from "../AuthContext";
+import { Context } from "../Context";
 import { app } from "../firebase-config";
 import { E_Font, Font } from "./Font";
 
@@ -11,8 +11,8 @@ const GalleryWrapper = styled.div`
     padding: 20px;
     border-radius: 8px;
     @media (max-width: 768px) {
-        width: 280px
-      }
+        width: 280px;
+    }
 `;
 
 const GalleryContent = styled.div`
@@ -26,10 +26,10 @@ const GalleryPhotoWrapper = styled.div`
 `;
 
 const GalleryPhoto = styled.img`
-width: 297px;
-@media (max-width: 768px) {
-    width: 137px;
-  }
+    width: 297px;
+    @media (max-width: 768px) {
+        width: 137px;
+    }
 `;
 
 const GalleryPhotoDesc = styled.div`
@@ -111,7 +111,7 @@ export default function Gallery() {
     const [gallery, setGallery] = useState<T_Gallery[] | null>(null);
     const [chosenPhoto, setChosenPhoto] = useState();
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const currentUser = useContext(AuthContext);
+    const context = useContext(Context);
 
     const handleClick = (photo: any) => {
         setChosenPhoto(photo);
@@ -149,22 +149,34 @@ export default function Gallery() {
     return (
         <GalleryWrapper id="gallery">
             <Font weight={"light"} size={E_Font.FONT_SIZE_TITLE}>
-                Galleri
+                {context?.language === "sv" && "Galleri"}
+                {context?.language === "fi" && "Galleria"}
             </Font>
-            <br />
-            <Font weight={"light"} size={E_Font.FONT_SIZE_BASIC}>
-                Klicka på bilden för att förstora
-            </Font>
-            <br></br>
             <GalleryContent>
                 {gallery &&
                     gallery.map((item, index) => (
-                        <GalleryPhotoWrapper style={{marginRight: `${index % 2 === 0 ? "5px" : "0"}`}} onClick={() => handleClick(item)}>
+                        <GalleryPhotoWrapper
+                            style={{
+                                marginRight: `${index % 2 === 0 ? "5px" : "0"}`,
+                            }}
+                            onClick={() => handleClick(item)}
+                        >
                             <GalleryPhoto src={`${item.fileUrl}`} />
                             <GalleryPhotoDesc>
-                                {index % 2 === 0 ? "före" : "efter"}
+                                {index % 2 === 0 &&
+                                    context?.language === "sv" &&
+                                    "Före"}
+                                {index % 2 === 0 &&
+                                    context?.language === "fi" &&
+                                    "Ennen"}
+                                {index % 2 !== 0 &&
+                                    context?.language === "sv" &&
+                                    "Efter"}
+                                {index % 2 !== 0 &&
+                                    context?.language === "fi" &&
+                                    "Jälkeen"}
                             </GalleryPhotoDesc>
-                            {currentUser && (
+                            {context?.currentUser && (
                                 <div
                                     onClick={() => deleteImage(item.id)}
                                     style={{
@@ -181,7 +193,7 @@ export default function Gallery() {
                             )}
                         </GalleryPhotoWrapper>
                     ))}
-                    <PhotoModal
+                <PhotoModal
                     setIsModalOpen={setIsModalOpen}
                     visible={isModalOpen}
                     photo={chosenPhoto}
