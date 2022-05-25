@@ -1,7 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
-import { app } from "../firebase-config";
 import { E_Padding } from "../LayoutEnums";
 import { E_Font, Font } from "./Font";
 import { faPhone } from "@fortawesome/free-solid-svg-icons";

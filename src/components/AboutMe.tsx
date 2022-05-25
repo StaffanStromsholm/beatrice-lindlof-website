@@ -4,6 +4,7 @@ import { app } from "../firebase-config";
 import { E_Font, Font } from "./Font";
 import { E_Padding } from "../LayoutEnums";
 import { Context } from "../Context";
+import { getDbData } from "../api";
 
 const TextWrapper = styled.div`
     background-color: white;
@@ -29,55 +30,28 @@ export default function AboutMe() {
     const [aboutMeSv, setAboutMeSv] = useState<T_AboutMe | null>(null);
     const [aboutMeFi, setAboutMeFi] = useState<T_AboutMe | null>(null);
     const context = useContext(Context);
-    
 
     useEffect(() => {
-        var aboutMeSvArray;
-        const aboutMeSvRef = db.ref("aboutMeSv");
-
-        aboutMeSvRef.on("value", (snapshot: any) => {
-            const aboutMeSvs = snapshot.val();
-            const aboutMeSvList = [];
-
-            for (let id in aboutMeSvs) {
-                aboutMeSvList.push({ id, ...aboutMeSvs[id] });
-            }
-
-            aboutMeSvArray = aboutMeSvList;
-
-            setAboutMeSv(aboutMeSvArray[aboutMeSvArray.length - 1]);
-        });
+        const aboutMeSv: any = getDbData("aboutMeSv");
+        aboutMeSv && setAboutMeSv(aboutMeSv);
     }, []);
 
     useEffect(() => {
-        var aboutMeFiArray;
-        const aboutMeFiRef = db.ref("aboutMeFi");
-
-        aboutMeFiRef.on("value", (snapshot: any) => {
-            const aboutMeFis = snapshot.val();
-            const aboutMeFiList = [];
-
-            for (let id in aboutMeFis) {
-                aboutMeFiList.push({ id, ...aboutMeFis[id] });
-            }
-
-            aboutMeFiArray = aboutMeFiList;
-
-            setAboutMeFi(aboutMeFiArray[aboutMeFiArray.length - 1]);
-        });
+        const aboutMeFi: any = getDbData("aboutMeFi");
+        setAboutMeFi(aboutMeFi);
     }, []);
 
     return (
-            <TextWrapper id="about">
-                <Font weight={"light"} size={E_Font.FONT_SIZE_TITLE}>
-                    {context?.language === "sv" && "Om mig"}
-                    {context?.language === "fi" && "Tietoa minusta"}
-                </Font>
-                <br></br>
-                <Font weight={"light"}>
+        <TextWrapper id="about">
+            <Font weight={"light"} size={E_Font.FONT_SIZE_TITLE}>
+                {context?.language === "sv" && "Om mig"}
+                {context?.language === "fi" && "Tietoa minusta"}
+            </Font>
+            <br></br>
+            <Font weight={"light"}>
                 {context?.language === "sv" && aboutMeSv && aboutMeSv.text}
                 {context?.language === "fi" && aboutMeFi && aboutMeFi.text}
-                    </Font>
-            </TextWrapper>
+            </Font>
+        </TextWrapper>
     );
 }

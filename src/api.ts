@@ -2,22 +2,23 @@ import { app } from "./firebase-config";
 const db = app.database();
 
 
-export const getDbData = async (dbRef: string) => {
-    var postArray;
-    const postRef = await db.ref(dbRef);
+export const getDbData = (dataRef:string) => {
+    var array;
+    const dbRef = db.ref(dataRef);
+    let result;
 
-    return postRef.on("value", async (snapshot) => {
-        const posts = await snapshot.val();
-        const postList = [];
+    dbRef.on("value", (snapshot: any) => {
+        const snapshotValue = snapshot.val();
+        const outputArray = [];
 
-        for (let id in posts) {
-            postList.push({ id, ...posts[id] });
+        for (let id in snapshotValue) {
+            outputArray.push({ id, ...snapshotValue[id] });
         }
 
-        postArray = postList;
+        array = outputArray;
 
-        console.log(postArray[postArray.length - 1]);
-
-        return postArray[postArray.length - 1];
+        result = array[array.length - 1];
     });
+
+    return result;
 }
