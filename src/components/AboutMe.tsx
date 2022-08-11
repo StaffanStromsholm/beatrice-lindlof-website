@@ -16,7 +16,7 @@ const TextWrapper = styled.div`
     margin: 30px auto 0 auto;
     white-space: pre-wrap;
     line-height: 1.5;
-    box-shadow: 2px 1px 10px gray;
+    box-shadow: 0px 2px 8px #2b2b2b;
     @media (max-width: 768px) {
         width: 280px;
     }
@@ -85,7 +85,7 @@ export default function AboutMe() {
                 {context?.language === "fi" && "Tietoa minusta"}
             </Font>
             <br></br>
-            <Font weight={"light"}>
+            <Font weight={"light"} size={"1.2rem"}>
                 {context?.language === "sv" && aboutMeSv?.text}
                 {context?.language === "fi" && aboutMeFi?.text}
             </Font>

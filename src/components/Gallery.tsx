@@ -11,7 +11,7 @@ const GalleryWrapper = styled.div`
     background-color: rgb(240, 240, 240);
     padding: 20px;
     // border-radius: 8px;
-    box-shadow: 2px 1px 10px gray;
+    box-shadow: 0px 2px 8px #2b2b2b;
     @media (max-width: 768px) {
         width: 280px;
     }

@@ -11,7 +11,7 @@ const ContactWrapper = styled.div`
     // background-color: white;
     background-color: rgb(240, 240, 240);
     // border-radius: 8px;
-    box-shadow: 2px 1px 10px gray;
+    box-shadow: 0px 2px 8px #2b2b2b;
     padding: ${E_Padding.CONTENT_WRAPPER};
     width: 600px;
     margin: 30px auto 0 auto;

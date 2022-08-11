@@ -139,7 +139,7 @@ const ProfilePicture = styled.div`
     border-radius: 50%;
     border: 7px solid #776622;
     border: 1px solid white;
-    box-shadow: 2px 1px 10px gray;
+    box-shadow: 0px 2px 8px #2b2b2b;
 
     // @media (max-width: 768px) {
     //     width: 320px;
