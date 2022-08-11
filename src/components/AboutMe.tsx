@@ -8,13 +8,15 @@ import { getDbData } from "../api";
 
 const TextWrapper = styled.div`
     background-color: white;
+    background-color: rgb(240, 240, 240);
     opacity: 1;
-    border-radius: 8px;
+    // border-radius: 8px;
     padding: ${E_Padding.CONTENT_WRAPPER};
     width: 600px;
     margin: 30px auto 0 auto;
     white-space: pre-wrap;
     line-height: 1.5;
+    box-shadow: 2px 1px 10px gray;
     @media (max-width: 768px) {
         width: 280px;
     }

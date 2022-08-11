@@ -8,8 +8,10 @@ import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { Context } from "../Context";
 
 const ContactWrapper = styled.div`
-    background-color: white;
-    border-radius: 8px;
+    // background-color: white;
+    background-color: rgb(240, 240, 240);
+    // border-radius: 8px;
+    box-shadow: 2px 1px 10px gray;
     padding: ${E_Padding.CONTENT_WRAPPER};
     width: 600px;
     margin: 30px auto 0 auto;

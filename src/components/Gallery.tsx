@@ -7,9 +7,11 @@ import { E_Font, Font } from "./Font";
 const GalleryWrapper = styled.div`
     width: 600px;
     margin: 30px auto 0 auto;
-    background-color: white;
+    // background-color: white;
+    background-color: rgb(240, 240, 240);
     padding: 20px;
-    border-radius: 8px;
+    // border-radius: 8px;
+    box-shadow: 2px 1px 10px gray;
     @media (max-width: 768px) {
         width: 280px;
     }
@@ -27,6 +29,7 @@ const GalleryPhotoWrapper = styled.div`
 
 const GalleryPhoto = styled.img`
     width: 297px;
+    box-shadow: 2px 1px 5px gray;
     @media (max-width: 768px) {
         width: 137px;
     }
@@ -35,9 +38,9 @@ const GalleryPhoto = styled.img`
 const GalleryPhotoDesc = styled.div`
     position: absolute;
     z-index: 1;
-    bottom: 0;
+    bottom: 3px;
     width: 100%;
-    height: 30px;
+    height: 35px;
     display: flex;
     justify-content: center;
     align-items: center;

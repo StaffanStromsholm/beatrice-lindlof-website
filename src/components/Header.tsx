@@ -11,7 +11,7 @@ let Link = Scroll.Link;
 const HeaderWrapper = styled.ul`
     width: 100%;
     height: 80px;
-    background-color: white;
+    background-color: rgb(240, 240, 240);
     margin: 0;
     list-style-type: none;
     display: flex;
@@ -29,7 +29,7 @@ const HeaderItem = styled.li`
     cursor: pointer;
     font-size: 1.3rem;
     :hover {
-        border-top: 2px solid white;
+        border-top: 2px solid rgb(240, 240, 240);
         border-bottom: 2px solid #776622;
         color: black;
     }

@@ -93,12 +93,19 @@ const CatchPhrasePhotoWrapper = styled.div`
 `;
 
 const CatchPhrase = styled.div`
-    color: #776622;
+    // color: #776622;
+    color: white;
     font-family: ${E_Font.FONT_FAMILY}
+    font-family: "Sacramento", cursive;
+    // font-family: 'Cookie', cursive;
     animation-name: ${fadein};
     animation-duration: 1s;
     width: 600px;
     text-align: center;
+    font-size: 2.2rem;
+    line-height: 1;
+    margin-right: 5px;
+    
     @media (max-width: 768px) {
         width: 330px;
         margin-bottom: 50px;
@@ -132,6 +139,7 @@ const ProfilePicture = styled.div`
     border-radius: 50%;
     border: 7px solid #776622;
     border: 1px solid white;
+    box-shadow: 2px 1px 10px gray;
 
     // @media (max-width: 768px) {
     //     width: 320px;

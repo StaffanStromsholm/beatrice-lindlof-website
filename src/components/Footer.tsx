@@ -9,8 +9,9 @@ import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
 const FooterWrapper = styled.div`
     width: 100%;
     height: 80px;
-    background-color: #A3C4CC;
-    background-color: white;
+    // background-color: #A3C4CC;
+    // background-color: white;
+    background-color: rgb(240, 240, 240);
     display: flex;
     justify-content: center;
     align-items: center;
