@@ -71,7 +71,7 @@ export default function AboutMe() {
 
             postArray = postList;
 
-            setAboutMeSv(postArray[postArray.length - 1]);
+            setAboutMeFi(postArray[postArray.length - 1]);
         });
         
     }, []);
@@ -84,7 +84,6 @@ export default function AboutMe() {
             </Font>
             <br></br>
             <Font weight={"light"}>
-                {console.log(aboutMeSv)}
                 {context?.language === "sv" && aboutMeSv?.text}
                 {context?.language === "fi" && aboutMeFi?.text}
             </Font>
