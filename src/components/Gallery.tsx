@@ -45,6 +45,15 @@ const GalleryPhotoDesc = styled.div`
     text-transform: uppercase;
 `;
 
+const DeleteButton = styled.div`
+    z-index: 1;
+    color: red;
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 2rem;
+`
+
 const db = app.database();
 
 type T_Gallery = {
@@ -130,12 +139,10 @@ export default function Gallery() {
     };
 
     useEffect(() => {
-        let photosArray;
         const ref = db.ref("galleryImages");
 
         ref.on("value", (snapshot) => {
             const galleryPhotos = snapshot.val();
-
             const photosList = [];
 
             for (let id in galleryPhotos) {
@@ -177,19 +184,9 @@ export default function Gallery() {
                                     "Jälkeen"}
                             </GalleryPhotoDesc>
                             {context?.currentUser && (
-                                <div
-                                    onClick={() => deleteImage(item.id)}
-                                    style={{
-                                        zIndex: "2",
-                                        color: "red",
-                                        position: "absolute",
-                                        top: "0",
-                                        right: "0",
-                                        fontSize: "2rem",
-                                    }}
-                                >
+                                <DeleteButton onClick={() => deleteImage(item.id)}>
                                     <i className="far fa-times-circle"></i>
-                                </div>
+                                </DeleteButton>
                             )}
                         </GalleryPhotoWrapper>
                     ))}

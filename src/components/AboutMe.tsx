@@ -32,13 +32,48 @@ export default function AboutMe() {
     const context = useContext(Context);
 
     useEffect(() => {
-        const aboutMeSv: any = getDbData("aboutMeSv");
-        aboutMeSv && setAboutMeSv(aboutMeSv);
+        //Todo: investigate why this function doesn't save state correctly
+        // const aboutMeSv: any = getDbData("aboutMeSv");
+        // setAboutMeSv(aboutMeSv);
+
+        var postArray;
+        const postRef = db.ref("aboutMeSv");
+
+        postRef.on("value", (snapshot) => {
+            const posts = snapshot.val();
+            const postList = [];
+
+            for (let id in posts) {
+                postList.push({ id, ...posts[id] });
+            }
+
+            postArray = postList;
+
+            setAboutMeSv(postArray[postArray.length - 1]);
+        });
     }, []);
 
     useEffect(() => {
-        const aboutMeFi: any = getDbData("aboutMeFi");
-        setAboutMeFi(aboutMeFi);
+        //Todo: investigate why this function doesn't save state correctly
+        // const aboutMeFi: any = getDbData("aboutMeFi");
+        // setAboutMeFi(aboutMeFi);
+
+        var postArray;
+        const postRef = db.ref("aboutMeFi");
+
+        postRef.on("value", (snapshot) => {
+            const posts = snapshot.val();
+            const postList = [];
+
+            for (let id in posts) {
+                postList.push({ id, ...posts[id] });
+            }
+
+            postArray = postList;
+
+            setAboutMeSv(postArray[postArray.length - 1]);
+        });
+        
     }, []);
 
     return (
@@ -49,8 +84,9 @@ export default function AboutMe() {
             </Font>
             <br></br>
             <Font weight={"light"}>
-                {context?.language === "sv" && aboutMeSv && aboutMeSv.text}
-                {context?.language === "fi" && aboutMeFi && aboutMeFi.text}
+                {console.log(aboutMeSv)}
+                {context?.language === "sv" && aboutMeSv?.text}
+                {context?.language === "fi" && aboutMeFi?.text}
             </Font>
         </TextWrapper>
     );

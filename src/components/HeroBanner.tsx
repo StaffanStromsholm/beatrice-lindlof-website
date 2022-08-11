@@ -162,7 +162,6 @@ export default function HeroBanner() {
     };
 
     useEffect(() => {
-        console.log(context?.language);
     }, [context?.language])
 
     useEffect(() => {

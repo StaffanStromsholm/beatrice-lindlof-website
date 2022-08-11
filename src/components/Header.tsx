@@ -19,7 +19,7 @@ const HeaderWrapper = styled.ul`
     align-items: center;
     padding: 0;
     position: fixed;
-    z-index: 90;
+    z-index: 2;
 `;
 
 const HeaderItem = styled.li`
@@ -78,6 +78,7 @@ export default function Header() {
                     color={"#776622"}
                     size={"2x"}
                     icon={faInstagram}
+                    onClick={() => window.location.href = "https://www.instagram.com/malartrissan/"}
                 />
             </HeaderItem>
         </HeaderWrapper>
