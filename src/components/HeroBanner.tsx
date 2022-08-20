@@ -96,13 +96,13 @@ const CatchPhrase = styled.div`
     // color: #776622;
     color: white;
     font-family: ${E_Font.FONT_FAMILY}
-    font-family: "Sacramento", cursive;
+    // font-family: "Sacramento", cursive;
     // font-family: 'Cookie', cursive;
     animation-name: ${fadein};
     animation-duration: 1s;
     width: 600px;
     text-align: center;
-    font-size: 2.2rem;
+    font-size: 1.5rem;
     line-height: 1;
     margin-right: 5px;
     
